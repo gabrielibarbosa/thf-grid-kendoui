@@ -3,10 +3,9 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomeModule' },
-  { path: 'users', loadChildren: './users/users.module#UsersModule' },
+  { path: 'grid-detail', loadChildren: './grid-detail/grid-detail.module#GridDetailModule' },
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes)
