@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { products } from './proudcts';
+import { GroupDescriptor, DataResult, process } from '@progress/kendo-data-query';
 
 @Component({
   selector: 'app-grid-detail-template',
@@ -8,7 +9,16 @@ import { products } from './proudcts';
 })
 export class GridDetailTemplateComponent implements OnInit {
 
-  public gridView: any[] = products;
+  public groups: GroupDescriptor[] = [{ field: 'Category.CategoryName' }];
+  public gridView: DataResult;
+  
+  public groupChange(groups: GroupDescriptor[]): void {
+    this.groups = groups;
+    this.loadProducts();
+}
+private loadProducts(): void {
+  this.gridView = process(products, { group: this.groups });
+}
   variavel=[
     {
       bla1: true,
@@ -19,6 +29,7 @@ export class GridDetailTemplateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.loadProducts();
   }
 
 }

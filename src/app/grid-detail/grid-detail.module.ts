@@ -5,6 +5,7 @@ import { GridDetailRoutingModule } from './grid-detail-routing.module';
 import { GridDetailTemplateComponent } from './grid-detail-template/grid-detail-template.component';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { ThfModule } from '@totvs/thf-ui';
+import { ThfKendoModule } from '@totvs/thf-kendo';
 
 @NgModule({
   declarations: [GridDetailTemplateComponent],
@@ -12,7 +13,8 @@ import { ThfModule } from '@totvs/thf-ui';
     CommonModule,
     GridDetailRoutingModule,
     GridModule,
-    ThfModule
+    ThfModule,
+    ThfKendoModule
   ]
 })
 export class GridDetailModule { }

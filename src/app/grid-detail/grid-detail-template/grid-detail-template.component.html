@@ -1,5 +1,6 @@
 <thf-page-list t-title="Grid Detail Template">
-  <kendo-grid [data]="gridView" [selectable]="false" style="height:400px">
+  <kendo-grid  [data]="gridView"  [groupable]="true" [resizable]="true" [reorderable]="true" [selectable]="false" style="height:400px"
+  [group]="groups" (groupChange)="groupChange($event)" >
 
     <kendo-grid-column field="ProductName" title="Product" [width]="300"></kendo-grid-column>
     <kendo-grid-column field="ProductID" title="ID" [width]="50"></kendo-grid-column>

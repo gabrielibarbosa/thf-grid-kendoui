@@ -34,7 +34,7 @@
     "@progress/kendo-theme-default": "latest",
     "@totvs/thf-kendo": "^3.20.0",
     "@totvs/thf-theme-kendo": "^3.20.0",
-    "@totvs/thf-ui": "3.18.0",
+    "@totvs/thf-ui": "^3.18.0",
     "core-js": "^2.5.4",
     "rxjs": "6.3.3",
     "rxjs-compat": "^6.0.0",
