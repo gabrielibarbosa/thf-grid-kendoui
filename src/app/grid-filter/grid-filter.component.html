@@ -1,0 +1,61 @@
+<thf-page-default t-title="Home">
+  <div class="example-config">
+    <label class="k-form-field">
+      <input class="k-checkbox" type="checkbox" id="allowUnsort" [(ngModel)]="allowUnsort" />
+      <label class="k-checkbox-label" for="allowUnsort">
+        {{ allowUnsort ? 'Disable': 'Enable' }} unsorting
+      </label>
+    </label><br />
+    <label class="k-form-field">
+      <input class="k-checkbox" type="checkbox" id="multiple" [(ngModel)]="multiple" />
+      <label class="k-checkbox-label" for="multiple">
+        {{ multiple ? 'Disable': 'Enable' }} multiple columns sorting
+      </label>
+    </label>
+
+  </div>
+  <kendo-grid 
+  [height]="400" 
+  [hidden]="hiddenColumns.indexOf(column) > -1" 
+  [resizable]="true" 
+  [reorderable]="true"    
+  [groupable]="true" 
+  [data]="gridView" 
+  [group]="groups" 
+  (groupChange)="groupChange($event)" 
+  [sortable]="{
+    allowUnsort: allowUnsort,
+    mode: multiple ? 'multiple' : 'single'
+    }" 
+  [sort]="sort" 
+  (sortChange)="sortChange($event)" 
+  [filterable]="true"
+  [filter]="state.filter"
+  (dataStateChange)="dataStateChange($event)">
+    <kendo-grid-column field="ProductID" title="ID" [width]="80"></kendo-grid-column>
+    <kendo-grid-column field="ProductName" title="Name" [width]="300"></kendo-grid-column>
+    <kendo-grid-column field="UnitPrice" title="Unit Price" [width]="120"></kendo-grid-column>
+    <kendo-grid-column field="Category.CategoryName" title="Category">
+      <ng-template kendoGridGroupHeaderTemplate let-value="value">
+        AGRUPADOR {{value}}
+      </ng-template>
+    </kendo-grid-column>
+    <ng-template kendoGridHeaderTemplate let-dataItem>
+      {{dataItem.field}}
+      <button (click)="hideColumn(dataItem.field)" class="k-button k-primary" style="float: right;">
+        Hide
+      </button>
+    </ng-template>
+    <ng-template kendoGridDetailTemplate let-dataItem>
+      <section *ngIf="dataItem.Category">
+        <thf-input name="input" t-label="Totvs Input"></thf-input>
+        <p><strong>In Stock:</strong> {{dataItem.UnitsInStock}} units</p>
+        <p><strong>On Order:</strong> {{dataItem.UnitsOnOrder}} units</p>
+        <p><strong>Reorder Level:</strong> {{dataItem.ReorderLevel}} units</p>
+        <p><strong>Discontinued:</strong> {{dataItem.Discontinued}}</p>
+        <p><strong>Category:</strong> {{dataItem.Category?.CategoryName}} - {{dataItem.Category?.Description}}</p>
+      </section>
+    </ng-template>
+  </kendo-grid>
+
+</thf-page-default>
